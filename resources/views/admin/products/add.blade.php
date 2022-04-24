@@ -146,6 +146,66 @@
                             <h3 align="center">Product Attributes</h3>
 
                             <div class="row">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        <div class="{{ $errors->has('size_id') ? ' has-error' : '' }}">
+                                            <label for="size_id" class="control-label"> Select Size</label>
+                                            <select class="form-control select2bs4" style="width: 100%;" name="size_id" id="size_id" required>
+                                                <option value="" selected>Select Size</option>
+                                                <?php foreach ($sizeMaster as $col) { ?>
+                                                    <option value="<?php echo $col->id ?>"><?php echo $col->size ?></option>
+                                                <?php } ?>
+                                            </select>
+
+                                            @if ($errors->has('size_id'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('size_id') }}</strong>
+                                            </span>
+                                            @endif
+                                            </br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        <div class="{{ $errors->has('size_height') ? ' has-error' : '' }}">
+                                            <label for="size_height" class="control-label"> Enter Size Height</label>
+                                            <input type="text" name="size_height" class="form-control {{($errors->has('size_height') ? 'is-invalid' : '')}}" id="size_height" placeholder="Enter product Height">
+
+                                            @if ($errors->has('size_height'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('size_height') }}</strong>
+                                            </span>
+                                            @endif
+                                            </br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        <div class="{{ $errors->has('size_width') ? ' has-error' : '' }}">
+                                            <label for="size_width" class="control-label"> Enter Size Width</label>
+                                            <input type="text" name="size_width" class="form-control {{($errors->has('product_price') ? 'is-invalid' : '')}}" id="size_width" placeholder="Enter product Width">
+
+                                            @if ($errors->has('size_width'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('size_width') }}</strong>
+                                            </span>
+                                            @endif
+                                            </br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        <div class="{{ $errors->has('size_depth') ? ' has-error' : '' }}">
+                                            <label for="size_depth" class="control-label"> Enter Size Depth</label>
+                                            <input type="text" name="size_depth" class="form-control {{($errors->has('product_price') ? 'is-invalid' : '')}}" id="size_depth" placeholder="Enter product Depth">
+
+                                            @if ($errors->has('size_depth'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('size_depth') }}</strong>
+                                            </span>
+                                            @endif
+                                            </br>
+                                        </div>
+                                    </div>
+
+                                </div>
                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                     <div class="{{ $errors->has('material_id') ? ' has-error' : '' }}">
                                         <label for="material_id" class="control-label"> Select Material</label>
@@ -200,19 +260,15 @@
                                         </br>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                    <div class="{{ $errors->has('size_id') ? ' has-error' : '' }}">
-                                        <label for="size_id" class="control-label"> Select Size</label>
-                                        <select class="form-control select2bs4" style="width: 100%;" name="size_id" id="size_id" required>
-                                            <option value="" selected>Select Size</option>
-                                            <?php foreach ($sizeMaster as $col) { ?>
-                                                <option value="<?php echo $col->id ?>"><?php echo $col->size ?></option>
-                                            <?php } ?>
-                                        </select>
 
-                                        @if ($errors->has('size_id'))
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                    <div class="{{ $errors->has('product_weight') ? ' has-error' : '' }}">
+                                        <label for="product_weight" class="control-label"> Enter Weight </label>
+                                        <input type="text" name="product_weight" class="form-control {{($errors->has('product_price') ? 'is-invalid' : '')}}" id="product_weight" placeholder="Enter product Weight (in KG)">
+
+                                        @if ($errors->has('product_weight'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('size_id') }}</strong>
+                                            <strong>{{ $errors->first('product_weight') }}</strong>
                                         </span>
                                         @endif
                                         </br>

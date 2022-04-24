@@ -115,6 +115,10 @@ class ProductController extends Controller
 			'is_featured' => $request->is_featured,
 			'is_bestseller' => $request->is_bestseller,
 			'is_latest' => $request->is_latest,
+			'product_weight' => $request->product_weight,
+			'size_height' => $request->size_height,
+			'size_width' => $request->size_width,
+			'size_depth' => $request->size_depth,
 			'product_image' => $product_image,
 			'created_by' => Auth::id(),
 			'slug' => str_slug($request->input('product_name') . ' ' . $request->id, '-'),
@@ -126,34 +130,74 @@ class ProductController extends Controller
 	public function edit($id)
 	{
 		$where = array('id' => $id);
-		$subcategories  = SubcategoryMaster::where($where)->first();
+		$product  = Product::where($where)->first();
 		$categories_masters = CategoryMaster::get();
-		return view('admin.subcategories.edit')->with(compact('subcategories', 'categories_masters'));
+		$colorMaster = ColorMaster::get();
+		$shapeMaster = ShapeMaster::get();
+		$sizeMaster = SizeMaster::get();
+		$useMaster = UseMaster::get();
+		$materialMasters = MaterialMasters::get();
+		return view('admin.products.edit')->with(compact('categories_masters', 'colorMaster', 'shapeMaster', 'sizeMaster', 'useMaster', 'materialMasters', 'product'));
 	}
 
 	public function update(Request $request)
 	{
 		$this->validate($request, [
 			'category_id' => 'required',
-			'sub_category_name' => 'required',
+			'sub_category_id' => 'required',
+			'product_name' => 'required',
+			'product_short_description' => 'required',
+			'product_description' => 'required',
+			'product_price' => 'required',
+			'product_discounted_price' => 'required',
+			'material_id' => 'required',
+			'color_id' => 'required',
+			'shape_id' => 'required',
+			'size_id' => 'required',
+			'use_id' => 'required',
 
 		]);
-		SubcategoryMaster::where('id', $request->id)->update([
+		if ($image = $request->file('product_image')) {
+			$destinationPath = 'public/products/';
+			$productImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+			$image->move($destinationPath, $productImage);
+			$product_image = "$productImage";
+		} else {
+			$product_image = '';
+		}
+		Product::where('id', $request->id)->update([
 			'category_id' => $request->category_id,
-			'sub_category_name' => $request->sub_category_name,
-
+			'sub_category_id' => $request->sub_category_id,
+			'product_name' => $request->product_name,
+			'product_short_description' => $request->product_short_description,
+			'product_description' => $request->product_description,
+			'product_price' => $request->product_price,
+			'product_discounted_price' => $request->product_discounted_price,
+			'material_id' => $request->material_id,
+			'color_id' => $request->color_id,
+			'shape_id' => $request->shape_id,
+			'size_id' => $request->size_id,
+			'use_id' => $request->use_id,
+			'is_featured' => $request->is_featured,
+			'is_bestseller' => $request->is_bestseller,
+			'is_latest' => $request->is_latest,
+			'product_weight' => $request->product_weight,
+			'size_height' => $request->size_height,
+			'size_width' => $request->size_width,
+			'size_depth' => $request->size_depth,
+			'product_image' => $product_image,
 			'updated_by' => Auth::id(),
 		]);
-		$request->session()->flash('success', 'subcategories Update Succefully');
-		return redirect('/admin/subcategories');
+		$request->session()->flash('success', 'Product Update Succefully');
+		return redirect('/admin/products');
 	}
 
 	public function delete(Request $request, $id)
 	{
 
-		SubcategoryMaster::where('id', $id)->delete();
-		$request->session()->flash('error', 'subcategories Delete Succefully');
-		return redirect('/admin/subcategories');
+		Product::where('id', $id)->delete();
+		$request->session()->flash('error', 'Product Delete Succefully');
+		return redirect('/admin/products');
 	}
 
 	public function getsubcategory(Request $request)

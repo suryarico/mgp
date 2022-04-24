@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\AdminUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,10 +40,33 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name(
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin');
 Route::get('/category/{slug}', [App\Http\Controllers\ProductController::class, 'categoryWiseProduct']);
 Route::get('/sub-category/{slug}', [App\Http\Controllers\ProductController::class, 'subcategoryWiseProduct']);
+Route::post('/addtoCart', [App\Http\Controllers\ProductController::class, 'addtoCart'])->name('addtoCart');;
+Route::post('/addtoWishlist', [App\Http\Controllers\ProductController::class, 'addtoWishlist'])->name('addtoWishlist');;
+Route::get('/wishlist', [App\Http\Controllers\ProductController::class, 'wishlist'])->name('wishlist');;
+Route::get('/cart', [App\Http\Controllers\OrderController::class, 'cart'])->name('cart');;
+Route::post('/cart-update', [App\Http\Controllers\OrderController::class, 'cartUpdate'])->name('cartUpdate');;
+Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'checkOut'])->name('checkOut');;
+Route::get('/placeOrder', [App\Http\Controllers\OrderController::class, 'placeOrder'])->name('placeOrder');;
+Route::post('/showQuickview', [App\Http\Controllers\ProductController::class, 'showQuickview'])->name('showQuickview');;
+Route::post('/getStatecharge', [App\Http\Controllers\OrderController::class, 'getStatecharge'])->name('getStatecharge');;
+Route::post('/getCheckoutItems', [App\Http\Controllers\OrderController::class, 'getCheckoutItems'])->name('getCheckoutItems');;
 /* Admin Routs */
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('/admin', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+    /* users route*/
+    Route::get('/users', [AdminUserController::class, 'getEmployeesAll'])->name('admin.users');
+    Route::get('/users/add', [AdminUserController::class, 'add'])->name('admin.users.add');
+    Route::get('/users/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.users.edit');
+    Route::post('/users/create', [AdminUserController::class, 'create'])->name('admin.users.create');
+    Route::post('/users/update', [AdminUserController::class, 'update'])->name('admin.users.update');
+    Route::get('/users/delete/{id}', [AdminUserController::class, 'delete'])->name('admin.users.delete');
+    Route::get('/users/getEmployees/', [AdminUserController::class, 'getEmployees'])->name('admin.users.getEmployees');
+    Route::get('/getEmployeesAll', [AdminUserController::class, 'getEmployeesAll'])->name('admin.users.getEmployeesAll');
+
+
+    /* users route end */
+
     /* Category route*/
     //Route::get('/categories', 'CategoryController@index')->name('admin.categories');
     Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories');

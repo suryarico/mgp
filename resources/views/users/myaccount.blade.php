@@ -91,15 +91,20 @@
                                 <div class="row">
                                     <div class="col">
                                         <h4 class="small-title">BILLING ADDRESS</h4>
-                                        <address>
-                                            1234 Heaven Stress, Beverly Hill OldYork UnitedState of Lorem
-                                        </address>
+                                        <?php if ($userAddress != null) { ?>
+                                            <address>
+
+                                                {{$userAddress->billing_address}} {{$userAddress->billing_address2}},{{$userAddress->billing_city}},{{$userAddress->billing_state}},{{$userAddress->billing_pincode}}
+                                            </address>
+                                        <?php } ?>
                                     </div>
                                     <div class="col">
                                         <h4 class="small-title">SHIPPING ADDRESS</h4>
-                                        <address>
-                                            1234 Heaven Stress, Beverly Hill OldYork UnitedState of Lorem
-                                        </address>
+                                        <?php if ($userAddress != null) { ?>
+                                            <address>
+                                                {{$userAddress->shipping_address}} {{$userAddress->shipping_address2}},{{$userAddress->shipping_city}},{{$userAddress->shipping_state}},{{$userAddress->shipping_pincode}}
+                                            </address>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

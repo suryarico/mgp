@@ -121,51 +121,11 @@
                     <div class="tab-pane fade show active" id="featured" role="tabpanel" aria-labelledby="featured-tab">
                         <div class="product-item-wrap row">
                             @if(!empty($prductsAll))
-                            @foreach ( $prductsAll as $pf )
-                            @if($pf->is_featured==1)
+                            @foreach ( $prductsAll as $p )
+                            @if($p->is_featured==1)
                             <div class="col-xl-3 col-md-4 col-sm-6">
                                 <div class="product-item">
-                                    <div class="product-img">
-                                        <a href="#">
-                                            <img class="primary-img" src="{{ URL::to('/') }}/public/products/<?php echo $pf->product_image ?>" alt="Product Images">
-                                            <img class="secondary-img" src="{{ URL::to('/') }}/public/products/<?php echo $pf->product_image ?>" alt="Product Images">
-                                        </a>
-                                        <div class="product-add-action">
-                                            <ul>
-                                                <li>
-                                                    <a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                        <i class="pe-7s-like"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="quuickview-btn" data-bs-toggle="modal" data-bs-target="#quickModal">
-                                                    <a href="#" data-tippy="Quickview" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                        <i class="pe-7s-look"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" data-tippy="Add to cart" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                        <i class="pe-7s-cart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="rating-box">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <a class="product-name" href="#"><?php echo $pf->product_name ?></a>
-                                        <div class="price-box pb-1">
-                                            <span class="new-price">&#x20b9;<?php echo $pf->product_price ?></span>
-                                        </div>
-
-                                    </div>
+                                    @include('products.product')
                                 </div>
                             </div>
                             @endif
@@ -177,51 +137,11 @@
                     <div class="tab-pane fade" id="bestseller" role="tabpanel" aria-labelledby="bestseller-tab">
                         <div class="product-item-wrap row">
                             @if(!empty($prductsAll))
-                            @foreach ( $prductsAll as $pf )
-                            @if($pf->is_bestseller==1)
+                            @foreach ( $prductsAll as $p )
+                            @if($p->is_bestseller==1)
                             <div class="col-xl-3 col-md-4 col-sm-6">
                                 <div class="product-item">
-                                    <div class="product-img">
-                                        <a href="#">
-                                            <img class="primary-img" src="{{ URL::to('/') }}/public/products/<?php echo $pf->product_image ?>" alt="Product Images">
-                                            <img class="secondary-img" src="{{ URL::to('/') }}/public/products/<?php echo $pf->product_image ?>" alt="Product Images">
-                                        </a>
-                                        <div class="product-add-action">
-                                            <ul>
-                                                <li>
-                                                    <a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                        <i class="pe-7s-like"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="quuickview-btn" data-bs-toggle="modal" data-bs-target="#quickModal">
-                                                    <a href="#" data-tippy="Quickview" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                        <i class="pe-7s-look"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" data-tippy="Add to cart" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                        <i class="pe-7s-cart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="rating-box">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <a class="product-name" href="#"><?php echo $pf->product_name ?></a>
-                                        <div class="price-box pb-1">
-                                            <span class="new-price">&#x20b9;<?php echo $pf->product_price ?></span>
-                                        </div>
-
-                                    </div>
+                                    @include('products.product')
                                 </div>
                             </div>
                             @endif
@@ -233,51 +153,11 @@
                     <div class="tab-pane fade" id="latest" role="tabpanel" aria-labelledby="latest-tab">
                         <div class="product-item-wrap row">
                             @if(!empty($prductsAll))
-                            @foreach ( $prductsAll as $pf )
-                            @if($pf->is_latest==1)
+                            @foreach ( $prductsAll as $p )
+                            @if($p->is_latest==1)
                             <div class="col-xl-3 col-md-4 col-sm-6">
                                 <div class="product-item">
-                                    <div class="product-img">
-                                        <a href="#">
-                                            <img class="primary-img" src="{{ URL::to('/') }}/public/products/<?php echo $pf->product_image ?>" alt="Product Images">
-                                            <img class="secondary-img" src="{{ URL::to('/') }}/public/products/<?php echo $pf->product_image ?>" alt="Product Images">
-                                        </a>
-                                        <div class="product-add-action">
-                                            <ul>
-                                                <li>
-                                                    <a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                        <i class="pe-7s-like"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="quuickview-btn" data-bs-toggle="modal" data-bs-target="#quickModal">
-                                                    <a href="#" data-tippy="Quickview" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                        <i class="pe-7s-look"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" data-tippy="Add to cart" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                        <i class="pe-7s-cart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="rating-box">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <a class="product-name" href="#"><?php echo $pf->product_name ?></a>
-                                        <div class="price-box pb-1">
-                                            <span class="new-price">&#x20b9;<?php echo $pf->product_price ?></span>
-                                        </div>
-
-                                    </div>
+                                    @include('products.product')
                                 </div>
                             </div>
                             @endif
@@ -376,49 +256,10 @@
                 <div class="swiper-container product-slider">
                     <div class="swiper-wrapper">
                         @if(!empty($prductsAll))
-                        @foreach ( $prductsAll as $pf )
-                        @if($pf->is_latest==1)
+                        @foreach ( $prductsAll as $p )
+                        @if($p->is_latest==1)
                         <div class="swiper-slide product-item">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img class="primary-img" src="{{ URL::to('/') }}/public/products/<?php echo $pf->product_image ?>" alt="Product Images">
-                                    <img class="secondary-img" src="{{ asset('public/assets/images/product/medium-size/1-10-270x300.jpg')}}" alt="Product Images">
-                                </a>
-                                <div class="product-add-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-like"></i>
-                                            </a>
-                                        </li>
-                                        <li class="quuickview-btn" data-bs-toggle="modal" data-bs-target="#quickModal">
-                                            <a href="#" data-tippy="Quickview" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-look"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-tippy="Add to cart" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-cart"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <a class="product-name" href="#"><?php echo $pf->product_name ?></a>
-                                <div class="price-box pb-1">
-                                    <span class="new-price">&#x20b9;<?php echo $pf->product_price ?></span>
-                                </div>
-                                <div class="rating-box">
-                                    <ul>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @include('products.product')
                         </div>
                         @endif
                         @endforeach

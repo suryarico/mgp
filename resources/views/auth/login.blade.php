@@ -20,10 +20,21 @@
                      <strong>{{ $message }}</strong>
                   </span>
                   @enderror
+
+                  @if ($errors->has('email'))
+                  <span class="help-block">
+                     <strong>{{ $errors->first('email') }}</strong>
+                  </span>
+                  @endif
                </div>
                <div class="form-group">
                   <label for="exampleInputEmail1">Password</label>
                   <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" required autocomplete="current-password" aria-describedby="emailHelp" placeholder="Enter Password">
+                  @if ($errors->has('password'))
+                  <span class="help-block">
+                     <strong>{{ $errors->first('password') }}</strong>
+                  </span>
+                  @endif
                </div>
                <div class="form-group">
                   <p class="text-right">

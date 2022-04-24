@@ -9,6 +9,7 @@
 					<li><a href="{{route('admin.categories')}}" <?php echo ($active == 'categories') ? 'active' : ''; ?>>Categories</a></li>
 					<li><a href="{{route('admin.subcategories')}}" <?php echo ($active == 'subcategories') ? 'active' : ''; ?>>Subcategories</a></li>
 					<li><a href="{{route('admin.banners')}}" <?php echo ($active == 'banners') ? 'active' : ''; ?>>Banners</a></li>
+					<li><a href="{{route('admin.users')}}" <?php echo ($active == 'users') ? 'active' : ''; ?>>Users</a></li>
 				</ul>
 			</li>
 			<li><a><i class="fa fa-shopping-cart"></i> Products Master <span class="fa fa-chevron-down"></span></a>

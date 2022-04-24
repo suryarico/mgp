@@ -23,10 +23,9 @@
               <thead>
                 <tr>
                   <td>Action</td>
-                  <td>Username</td>
-                  <td>Name</td>
+                  <td>Namesss</td>
                   <td>Email</td>
-                  <td>Employee Type</td>
+                  <td>User Type</td>
                 </tr>
               </thead>
             </table>
@@ -82,9 +81,7 @@
       columns: [{
           data: 'id'
         },
-        {
-          data: 'emp_id'
-        },
+
         {
           data: 'name'
         },
@@ -92,7 +89,7 @@
           data: 'email'
         },
         {
-          data: 'emp_type'
+          data: 'is_admin'
         },
 
       ],

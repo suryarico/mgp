@@ -1,0 +1,90 @@
+.payment-failed
+	    {
+		    border:1px solid #f01b1b;
+            border-radius:20px;
+            background:#fff;
+	    }
+       .payment_header-failed
+       {
+	       background:#f01b1b;
+	       padding:20px;
+           border-radius:20px 20px 0px 0px;
+	   
+       }
+	    .payment-placed
+	    {
+		    border:1px solid #abd373;
+            border-radius:20px;
+            background:#fff;
+	    }
+       .payment_header-placed
+       {
+	       background:#abd373;
+	       padding:20px;
+           border-radius:20px 20px 0px 0px;
+	   
+       }
+   
+       .check
+       {
+	       margin:0px auto;
+	       width:50px;
+	       height:50px;
+	       border-radius:100%;
+	       background:#fff;
+	       text-align:center;
+		   
+       }
+   
+       .check i
+       {
+	       vertical-align:middle;
+	       line-height:50px;
+	       font-size:30px;
+       }
+
+        .content 
+        {
+            text-align:center;
+			padding: 10px 20px 40px;
+        }
+
+        .content  h1
+        {
+            font-size:25px;
+            padding-top:25px;
+        }
+		
+		.order-failed-area {
+		padding: 5% 0px;
+		}
+		.content a
+        {
+            width:200px;
+            height:35px;
+            color:#fff;
+            border-radius:30px;
+            padding:5px 10px;
+            background:#abd373;
+            transition:all ease-in-out 0.3s;
+        }
+
+        .content a:hover
+        {
+            text-decoration:none;
+            background:#000;
+        }
+		
+.re-address{
+	margin-bottom: 3em;
+}
+
+.myoldadd {
+	border: 1px solid #dee2e6;
+	padding: 30px;
+	-webkit-transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	margin-bottom: 1em;
+}
+		

@@ -28,9 +28,10 @@
 								<thead>
 									<tr>
 										<th>Action</th>
+										<th>Product Name</th>
+										<th>Product Price</th>
 										<th>Category Name</th>
 										<th>SubCategory Name</th>
-
 										<th>Created by</th>
 										<th>created at </th>
 										<th>Updated by</th>
@@ -50,6 +51,8 @@
 											<a href="{{ url('admin/products/edit',$subcat->id)}}" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit" style="font-size: 10px;"> <i class="fa fa-edit"></i> </a>
 											<a href="{{ url('admin/products/delete',$subcat->id)}}" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete" style="font-size: 10px;"> <i class="fa fa-trash"></i> </a>
 										</td>
+										<td>{{$subcat->product_name}}</td>
+										<td>{{$subcat->product_price}}</td>
 										<td>{{$subcat->category_name}}</td>
 										<td>{{$subcat->sub_category_name}}</td>
 

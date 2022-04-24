@@ -18,11 +18,49 @@
   <!-- Minify Version -->
   <link rel="stylesheet" href="{{ asset('public/assets/css/plugins.min.css')}}">
   <link rel=" stylesheet" href="{{ asset('public/assets/css/style.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('public/assets/css/custom-style.css')}}">
 
+  <style>
+    #overlay {
+      position: fixed;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      height: 100%;
+      display: none;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .cv-spinner1 {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .spinner1 {
+      width: 40px;
+      height: 40px;
+      border: 4px #89e6a7 solid;
+      border-top: 4px #208f44 solid;
+      border-radius: 50%;
+      animation: sp-anime 0.8s infinite linear;
+    }
+
+    @keyframes sp-anime {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .is-hide {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
-  <div class=" preloader-activate preloader-active open_tm_preloader">
+  <div class="preloader-activate preloader-active open_tm_preloader" id="loader">
     <div class="preloader-area-wrap">
       <div class="spinner d-flex justify-content-center align-items-center h-100">
         <div class="bounce1"></div>
@@ -120,14 +158,15 @@
                       </ul>
                     </li>
                     <li class="d-none d-lg-block">
-                      <a href="#">
+                      <a href="{{ route('wishlist') }}">
                         <i class="pe-7s-like"></i>
                       </a>
                     </li>
                     <li class="minicart-wrap me-3 me-lg-0">
                       <a href="#miniCart" class="minicart-btn toolbar-btn">
                         <i class="pe-7s-shopbag"></i>
-                        <span class="quantity">3</span>
+                        <?php $userCartItems = App\Models\Cart::where('user_id', Auth::id())->get(); ?>
+                        <span class="quantity">{{$userCartItems->count()}}</span>
                       </a>
                     </li>
                     <li class="mobile-menu_wrap d-block d-lg-none">
@@ -169,44 +208,24 @@
                       </span>
                     </a>
                   </li>
-                  <li class="menu-item-has-children">
-                    <a href="#">
-                      <span class="mm-text">Plants
-                        <i class="pe-7s-angle-down"></i>
-                      </span>
-                    </a>
-                    <ul class="sub-menu">
-                      <li>
-                        <a href="#">
-                          <span class="mm-text">Indoor</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <span class="mm-text">Outdoor</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="menu-item-has-children">
-                    <a href="#">
-                      <span class="mm-text">Pots
-                        <i class="pe-7s-angle-down"></i>
-                      </span>
-                    </a>
-                    <ul class="sub-menu">
-                      <li>
-                        <a href="#">
-                          <span class="mm-text">Ceramic</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <span class="mm-text">Fiber Ceramic</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
+                  <?php foreach ($categories_masters as $c) { ?>
+                    <li class="menu-item-has-children">
+
+                      <a href="#">
+                        <span class="mm-text">{{$c->category_name}} <i class="pe-7s-angle-down"></i> </span></a>
+                      <ul class="sub-menu">
+                        <?php foreach ($subcategories as $sub) {
+                          if ($sub->category_id == $c->id) { ?>
+                            <li>
+                              <a href="{{ url('sub-category',$sub->slug)}}"> <span class="mm-text">{{$sub->sub_category_name}}</span></a>
+                            </li>
+                        <?php }
+                        } ?>
+                      </ul>
+                    </li>
+                  <?php } ?>
+
+
                   <li>
                     <a href="#">
                       <span class="mm-text">About Us</span>
@@ -252,51 +271,18 @@
               <h4 class="mb-0">Shopping Cart</h4>
               <a href="#" class="button-close"><i class="pe-7s-close" data-tippy="Close" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
             </div>
-            <ul class="minicart-list">
-              <li class="minicart-product">
-                <a class="product-item_remove" href="#"><i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
-                <a href="#" class="product-item_img">
-                  <img class="img-full" src="assets/images/product/small-size/2-1-70x78.png" alt="Product Image">
-                </a>
-                <div class="product-item_content">
-                  <a class="product-item_title" href="#">American Marigold</a>
-                  <span class="product-item_quantity">1 x $23.45</span>
-                </div>
-              </li>
-              <li class="minicart-product">
-                <a class="product-item_remove" href="#"><i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
-                <a href="#" class="product-item_img">
-                  <img class="img-full" src="assets/images/product/small-size/2-2-70x78.png" alt="Product Image">
-                </a>
-                <div class="product-item_content">
-                  <a class="product-item_title" href="#">Black Eyed Susan</a>
-                  <span class="product-item_quantity">1 x $25.45</span>
-                </div>
-              </li>
-              <li class="minicart-product">
-                <a class="product-item_remove" href="#">
-                  <i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i>
-                </a>
-                <a href="#" class="product-item_img">
-                  <img class="img-full" src="assets/images/product/small-size/2-3-70x78.png" alt="Product Image">
-                </a>
-                <div class="product-item_content">
-                  <a class="product-item_title" href="#">Bleeding Heart</a>
-                  <span class="product-item_quantity">1 x $30.45</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="minicart-item_total">
-            <span>Subtotal</span>
-            <span class="ammount">$79.35</span>
-          </div>
-          <div class="group-btn_wrap d-grid gap-2">
-            <a href="#" class="btn btn-dark">View Cart</a>
-            <a href="#" class="btn btn-dark">Checkout</a>
+            <div id="userCartlist">
+              <?php
+              $userCartItems = App\Models\Cart::where('user_id', Auth::id())
+                ->leftJoin('products',  'products.id', '=', 'carts.product_id')->get(); ?>
+              <?php if ($userCartItems->count() > 0) { ?>
+                @include('products.sidebarCart')
+              <?php } else {
+                echo "No Items in cart";
+              } ?>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="global-overlay"></div>
+        <div class="global-overlay"></div>
     </header>
     <!-- Main Header Area End Here -->
